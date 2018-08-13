@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+
+<wide><div style="max-width: 100%" id="autaStrany"></div></wide>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+
+<script type="text/javascript">
+
+var colors = ['#EA614A', '#20649B', '#008836', '#6B96CA', '#A38456', '#A87A93', '#D19C95']
+
+var dataAS = [
+  [8.5,12.4,18.9,19.6,19.7,20.9,22.2,23.3,26.4,28.8,45.1],
+  [70.7,53.8,56.8,59.3,59,51.3,56,43.7,45.2,63,33.7],
+  [20.8,33.9,24.4,21.1,21.3,27.8,21.8,33,28.4,8.2,21.2]
+];
+
+var stranyAS = ["Svobodní","TOP09","SPD","KDU-ČSL","ODS","Zelení","ANO","STAN","Piráti","ČSSD","KSČM"];
+
+Highcharts.chart('autaStrany', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Vlastnictví auta × volební preference'
+    },
+    subtitle: {
+        text: 'Počet aut v domácnosti'
+    },
+    xAxis: {
+        categories: stranyAS
+    },
+    yAxis: {
+        title: {
+            text: 'Podíl voličů strany'
+        },
+        labels: {
+            format: '{value} %'
+        }
+    },
+    tooltip: {
+        pointFormat: '{point.series.name} v domácnosti: <b>{point.y} %</b> voličů strany<br/>',
+        shared: true
+    },
+    exporting: {
+        enabled: false
+    },
+    credits: {
+        href: '',
+        text: 'Zdroj: Median'
+    },
+    series: [{
+        name: 'Žádné auto',
+        data: dataAS[0],
+        color: colors[0]
+    }, {
+        name: 'Jedno auto',
+        data: dataAS[1],
+        color: colors[1]
+    }, {
+        name: 'Dvě a více aut',
+        data: dataAS[2],
+        color: colors[2]
+    }]
+});
+
+		</script>
+	</body>
+</html>
+

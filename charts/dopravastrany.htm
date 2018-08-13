@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body>
+
+<wide><div style="max-width: 100%" id="dopravaStrany"></div></wide>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+
+<script type="text/javascript">
+
+var colors = ['#EA614A', '#20649B', '#008836', '#6B96CA', '#A38456', '#A87A93', '#D19C95']
+
+var dataDS = [
+  [31.5,23,20.8,20.5,20.1,18.2,16.1,15.1,12.5,9.6,7.9],
+  [19.8,16.2,25.7,23,43.6,26.2,23.4,18.5,24.1,59.2,39.8],
+  [30.8,14.8,29.5,21.8,38,20.4,21.4,21.9,17,31.1,44.8],
+  [23.2,31.9,25.4,27,26.9,27.5,19.5,32.3,22.2,38.5,60.1]
+];
+
+var stranyDS = ["ODS","SPD","Piráti","STAN","TOP09","ANO","průměr","ČSSD","KDU-ČSL","KSČM","Zelení","Svobodní"];
+
+Highcharts.chart('dopravaStrany', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Cestování × volební preference'
+    },
+    subtitle: {
+        text: 'Podíl voličů, kteří v běžném týdnu využívají dopravní prostředek'
+    },
+    xAxis: {
+        categories: stranyDS
+    },
+    yAxis: {
+        title: {
+            text: 'Podíl voličů strany'
+        },
+        labels: {
+            format: '{value} %'
+        }
+    },
+    tooltip: {
+        pointFormat: '{point.series.name} v běžném týdnu využívá <b>{point.y} %</b> voličů strany<br/>',
+        shared: true
+    },
+    exporting: {
+        enabled: false
+    },
+    credits: {
+        href: '',
+        text: 'Zdroj: Median'
+    },
+    series: [{
+        name: 'Automobil',
+        data: dataDS[0],
+        color: colors[0]
+    }, {
+        name: 'Vlak',
+        data: dataDS[1],
+        color: colors[1],
+        visible: false
+    }, {
+        name: 'Tramvaj',
+        data: dataDS[2],
+        color: colors[2],
+        visible: false
+    }, {
+        name: 'Bicykl',
+        data: dataDS[3],
+        color: colors[4]
+    }]
+});
+
+		</script>
+	</body>
+</html>
+

@@ -1,21 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Highcharts Example</title>
+
+		<style type="text/css">
+
+#chart {
+    max-width: 100%;
+    margin: 1em auto;
+}
+
+.small {
+    max-width: 350px;
+    min-width: 300px;
+    height: 350px;
+    margin: 1em auto;
+    float: left;
+}
+
+		</style>
+	</head>
+	<body>
+
+<div style="max-width: 100%; overflow: hidden; display: block;">
+    <div class="chart small" id="prijmy"></div>
+    <div class="chart small" id="obec"></div>
+</div>
+<div style="max-width: 100%; overflow: hidden; display: block;">
+    <div class="chart small" id="vek"></div>
+    <div class="chart small" id="vzdelani"></div>
+</div>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+
+<script type="text/javascript">
+
 var colors = ['#EA614A', '#20649B', '#008836', '#6B96CA', '#A38456', '#A87A93', '#D19C95']
-
-var dataAS = [
-  [12.4,18.9,19.6,19.7,20.9,22.2,23.3,26.4,28.8,45.1],
-  [53.8,56.8,59.3,59,51.3,56,43.7,45.2,63,33.7],
-  [33.9,24.4,21.1,21.3,27.8,21.8,33,28.4,8.2,21.2]
-];
-
-var stranyAS = ["TOP09","SPD","KDU-ČSL","ODS","Zelení","ANO","STAN","Piráti","ČSSD","KSČM"];
-
-var dataDS = [
-  [31.5,23,20.8,20.5,20.1,18.2,16.1,15.1,12.5,9.6],
-  [19.8,16.2,25.7,23,43.6,26.2,23.4,18.5,24.1,59.2],
-  [30.8,14.8,29.5,21.8,38,20.4,21.4,21.9,17,31.1],
-  [23.2,31.9,25.4,27,26.9,27.5,19.5,32.3,22.2,38.5]
-];
-
-var stranyDS = ["ODS","SPD","Piráti","STAN","TOP09","ANO","ČSSD","KDU-ČSL","KSČM","Zelení"];
 
 var dataPrijmy = [
   [29.2,21.2,18.4,15.4,13.4],
@@ -51,120 +74,7 @@ var obec = ["Do 1000","Do 5000","Do 20000","Do 100000","Nad 100000"];
 
 var vek = ["18-24","25-34","35-44","45-54","55-64","65-79"];
 
-var vzdelani = ["ZŠ","SŠ bez mat.","SŠ s mat.","VŠ"];
-
-$(function () {
-
-    Highcharts.setOptions({
-            lang: {
-                months: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
-                weekdays: ['neděle', 'pondělí', 'úterý', 'středa', 'čtvrtek', 'pátek', 'sobota'],
-                shortMonths: ['leden', 'únor', 'březen', 'duben', 'květen', 'červen', 'červenec', 'srpen', 'září', 'říjen', 'listopad', 'prosinec'],
-                thousandsSep: '',
-                decimalPoint:',',
-                rangeSelectorZoom: 'Zobrazit'
-            }
-        });
-
-Highcharts.chart('autaStrany', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Vlastnictví auta × volební preference'
-    },
-    subtitle: {
-        text: 'Počet aut v domácnosti'
-    },
-    xAxis: {
-        categories: stranyAS
-    },
-    yAxis: {
-        title: {
-            text: 'Podíl voličů strany'
-        },
-        labels: {
-            format: '{value} %'
-        }
-    },
-    tooltip: {
-        pointFormat: '{point.series.name} v domácnosti: <b>{point.y} %</b> voličů strany<br/>',
-        shared: true
-    },
-    exporting: {
-        enabled: false
-    },
-    credits: {
-        href: '',
-        text: 'Zdroj: Median'
-    },
-    series: [{
-        name: 'Žádné auto',
-        data: dataAS[0],
-        color: colors[0]
-    }, {
-        name: 'Jedno auto',
-        data: dataAS[1],
-        color: colors[1]
-    }, {
-        name: 'Dvě a více aut',
-        data: dataAS[2],
-        color: colors[2]
-    }]
-});
-
-Highcharts.chart('dopravaStrany', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Cestování × volební preference'
-    },
-    subtitle: {
-        text: 'Podíl voličů, kteří v běžném týdnu využívají dopravní prostředek'
-    },
-    xAxis: {
-        categories: stranyDS
-    },
-    yAxis: {
-        title: {
-            text: 'Podíl voličů strany'
-        },
-        labels: {
-            format: '{value} %'
-        }
-    },
-    tooltip: {
-        pointFormat: '{point.series.name} v běžném týdnu využívá <b>{point.y} %</b> voličů strany<br/>',
-        shared: true
-    },
-    exporting: {
-        enabled: false
-    },
-    credits: {
-        href: '',
-        text: 'Zdroj: Median'
-    },
-    series: [{
-        name: 'Automobil',
-        data: dataDS[0],
-        color: colors[0]
-    }, {
-        name: 'Vlak',
-        data: dataDS[1],
-        color: colors[1],
-        visible: false
-    }, {
-        name: 'Tramvaj',
-        data: dataDS[2],
-        color: colors[2],
-        visible: false
-    }, {
-        name: 'Bicykl',
-        data: dataDS[3],
-        color: colors[4]
-    }]
-});
+var vzdelani = ["ZŠ","SŠ bez mat.","SŠ s mat.","VŠ"]
 
 Highcharts.chart('prijmy', {
     chart: {
@@ -382,4 +292,7 @@ Highcharts.chart('vzdelani', {
     }]
 });
 
-});
+		</script>
+	</body>
+</html>
+
